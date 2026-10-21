@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NexMine.Core</title>
+  <meta name="description" content="NexMine.Core: laboratorio de minado de inteligencia. Misiones abiertas para la comunidad.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="logo" href="#inicio"><span class="logo-ring"></span><span>Nex<b>.Core</b></span></a>
+    <nav class="menu" aria-label="Menú">
+      <a href="#red" data-i18n="nav.red">Red</a>
+      <a href="#ruta" data-i18n="nav.ruta">Ruta</a>
+      <a href="#laboratorio" data-i18n="nav.lab">Laboratorio</a>
+      <a href="#ecosistema" data-i18n="nav.eco">Ecosistema</a>
+      <a href="#buzon" data-i18n="nav.buzon">Buzón</a>
+    </nav>
+    <button class="lang" id="lang" type="button" aria-label="Cambiar idioma">EN</button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-text">
+        <h1 class="graffiti">NexMine<span>.Core</span></h1>
+        <p class="tagline" data-i18n="hero.tag">Laboratorio de minado de inteligencia</p>
+        <p class="lead" data-i18n="hero.lead">Construimos un "Interlocutor": una IA que entiende exactamente lo que quieres, ni más ni menos. Lo montamos como piezas de Lego, y tú puedes ayudar.</p>
+        <a class="btn" href="#laboratorio" data-i18n="hero.cta">[ Ver misiones ]</a>
+      </div>
+      <img class="hero-robot" src="img/poster.webp" alt="Robots de NexMine.Core en una ciudad de neón" width="714" height="1280">
+    </section>
+
+    <section class="panel" id="red">
+      <h2 data-i18n="red.h">Red</h2>
+      <p data-i18n="red.p1">NexMine es un asistente de IA. Su trabajo es entender lo que pides y dejarlo ordenado en un texto claro. Después, tú llevas ese texto a la herramienta que quieras.</p>
+      <blockquote data-i18n="red.quote">"El Interlocutor no aprende proyectos. Aprende intención."</blockquote>
+      <p data-i18n="red.p2">La red es la gente que lo construye: ideas, debates, pruebas y diseño. No hace falta saber programar.</p>
+    </section>
+
+    <section class="panel" id="ruta">
+      <h2 data-i18n="ruta.h">Ruta</h2>
+      <ol class="route">
+        <li class="done"><b data-i18n="ruta.1h">Abrir el proyecto</b><span data-i18n="ruta.1p">Presentación, ideas y avisos en GitHub.</span></li>
+        <li class="now"><b data-i18n="ruta.2h">Primeras misiones</b><span data-i18n="ruta.2p">Ideas, debates, diseño y traducciones. Sin código.</span></li>
+        <li><b data-i18n="ruta.3h">Interlocutor público</b><span data-i18n="ruta.3p">Una primera versión del código, abierta a todos.</span></li>
+        <li><b data-i18n="ruta.4h">Misiones con código</b><span data-i18n="ruta.4p">Construir y probar piezas nuevas.</span></li>
+      </ol>
+    </section>
+
+    <section class="panel" id="laboratorio">
+      <h2 data-i18n="lab.h">Contratos de minado activos</h2>
+      <p class="hint" data-i18n="lab.hint">Cada misión es un aviso (Issue) en GitHub. Entra, deja un comentario y empieza.</p>
+      <div class="filters" role="group" aria-label="Filtro">
+        <button type="button" class="on" data-filter="all" data-i18n="f.all">Todas</button>
+        <button type="button" data-filter="open" data-i18n="f.open">Abiertas</button>
+        <button type="button" data-filter="progress" data-i18n="f.progress">En curso</button>
+        <button type="button" data-filter="done" data-i18n="f.done">Completadas</button>
+      </div>
+      <div class="table-wrap">
+        <table class="missions">
+          <thead>
+            <tr><th data-i18n="t.mision">Misión</th><th data-i18n="t.estado">Estado</th><th data-i18n="t.puntos">Puntos</th><th data-i18n="t.rango">Rango</th></tr>
+          </thead>
+          <tbody id="missions"></tbody>
+        </table>
+      </div>
+      <p class="status" id="missions-status" aria-live="polite"></p>
+
+      <h3 data-i18n="board.h">Marcador</h3>
+      <p class="hint" data-i18n="board.hint">Al completar una misión, sus puntos van a quien la hizo. Nivel 1 = 10 puntos · Nivel 2 = 30 · Nivel 3 = 100.</p>
+      <ol class="board" id="board"></ol>
+      <p class="status" id="board-status"></p>
+      <p class="note" data-i18n="board.note">Los puntos son un registro de tu participación. No son dinero ni acciones.</p>
+
+      <h3 data-i18n="rangos.h">Rangos</h3>
+      <div class="ranks">
+        <div class="rank"><span class="ico">⛏️</span><b data-i18n="r.minero">Minero</b><span data-i18n="r.minero.p">Completa tu primera misión.</span></div>
+        <div class="rank"><span class="ico">🔧</span><b data-i18n="r.ing">Ingeniero</b><span data-i18n="r.ing.p">Completa 3 misiones, o 1 de nivel 2.</span></div>
+        <div class="rank"><span class="ico">🏛️</span><b data-i18n="r.fund">Fundador</b><span data-i18n="r.fund.p">Entre los primeros en completar una misión de nivel 3.</span></div>
+      </div>
+    </section>
+
+    <section class="panel" id="ecosistema">
+      <h2 data-i18n="eco.h">Ecosistema</h2>
+      <div class="cards">
+        <div class="card"><b data-i18n="eco.1h">Piezas</b><span data-i18n="eco.1p">Cada pieza hace una sola cosa y se puede enchufar, como un Lego.</span></div>
+        <div class="card"><b data-i18n="eco.2h">Orquestador</b><span data-i18n="eco.2p">Conecta las piezas y las coordina, como la centralita de una máquina.</span></div>
+        <div class="card"><b data-i18n="eco.3h">Comunidad</b><span data-i18n="eco.3p">Propone piezas, debate ideas y completa misiones.</span></div>
+      </div>
+    </section>
+
+    <section class="panel" id="buzon">
+      <h2 data-i18n="buzon.h">Buzón</h2>
+      <p class="hint" data-i18n="foro.hint">El foro del juego: habla con otros mineros, pide ayuda y comparte tus misiones.</p>
+      <div class="wall">
+        <img class="wall-img" src="img/muro2.webp" alt="" width="1280" height="720">
+        <div class="chat" id="foro">
+          <div class="chat-head"><span class="dot"></span><span data-i18n="foro.h">Canal del laboratorio</span></div>
+          <div class="chat-body" id="foro-body"></div>
+        </div>
+      </div>
+      <div class="cards">
+        <a class="card link" href="https://github.com/Henoc-Ceresola/NexMine/discussions"><b data-i18n="buzon.1h">💡 Ideas y preguntas</b><span data-i18n="buzon.1p">Conversaciones (Discussions)</span></a>
+        <a class="card link" href="https://github.com/Henoc-Ceresola/NexMine/issues"><b data-i18n="buzon.2h">🐞 Fallos</b><span data-i18n="buzon.2p">Avisos (Issues)</span></a>
+      </div>
+      <p class="warn" data-i18n="buzon.warn">⚠️ Nunca escribas contraseñas, claves ni datos personales.</p>
+      <p class="hint" data-i18n="buzon.lang">Se puede escribir en inglés o en español.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <a href="https://github.com/Henoc-Ceresola/NexMine">github.com/Henoc-Ceresola/NexMine</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+/* Tema de giscus con los colores de NexGame (neón rosa y azul) */
+@import url("https://giscus.app/themes/transparent_dark.css");
+
+main {
+  --color-fg-default: #ece8ff;
+  --color-fg-muted: #a69cc9;
+  --color-accent-fg: #22d3ff;
+  --color-accent-emphasis: #ff2bd6;
+  --color-border-default: rgba(34, 211, 255, 0.3);
+  --color-border-muted: rgba(34, 211, 255, 0.2);
+  --color-canvas-default: transparent;
+  --color-canvas-subtle: rgba(7, 6, 15, 0.55);
+  --color-canvas-inset: rgba(7, 6, 15, 0.7);
+  --color-btn-primary-bg: #ff2bd6;
+  --color-btn-primary-hover-bg: #22d3ff;
+  --color-btn-primary-text: #07060f;
+}

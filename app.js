@@ -53,7 +53,7 @@
       demo: "Vista de ejemplo: estas misiones no son reales todavía.",
       boardEmpty: "Nadie ha completado una misión todavía. ¡Sé la primera persona!",
       pts: "pts", missionsDone: "misiones", missionDone: "misión",
-      foroSoon: "El foro se abre muy pronto.", foroInput: "Entra con tu cuenta de GitHub para escribir…",
+      foroInput: "Entra con tu cuenta de GitHub para escribir…",
       ranks: { 0: "Aspirante", 1: "⛏️ Minero", 2: "🔧 Ingeniero", 3: "🏛️ Fundador" }
     },
     en: {
@@ -64,7 +64,7 @@
       demo: "Example view: these missions are not real yet.",
       boardEmpty: "Nobody has completed a mission yet. Be the first!",
       pts: "pts", missionsDone: "missions", missionDone: "mission",
-      foroSoon: "The forum opens very soon.", foroInput: "Sign in with your GitHub account to write…",
+      foroInput: "Sign in with your GitHub account to write…",
       ranks: { 0: "Aspirant", 1: "⛏️ Miner", 2: "🔧 Engineer", 3: "🏛️ Founder" }
     }
   };
@@ -246,33 +246,64 @@
     renderBoard();
   }
 
-  // De momento el foro es solo el marco. Al publicar, aquí irá giscus (los Discussions de GitHub dentro de la web).
+  // Foro principal: giscus muestra dentro de la web una conversación de las Discussions de NexMine
+  // (categoría General). Los chats de cada misión irán aparte.
+  var GISCUS = {
+    repo: REPO,
+    repoId: "R_kgDOVRZ9zg",
+    category: "General",
+    categoryId: "DIC_kwDOVRZ9zs4DJMtM",
+    term: "Canal del laboratorio"
+  };
+
+  function giscusTheme() {
+    return /github\.io$/.test(location.hostname)
+      ? location.origin + "/NexGame/giscus-theme.css"
+      : "transparent_dark";
+  }
+
   function renderForo() {
     var w = WORDS[lang];
     var body = document.getElementById("foro-body");
     body.textContent = "";
-    if (isDemo()) {
-      DEMO_FORO.forEach(function (m) {
-        var p = document.createElement("p");
-        p.className = "msg";
-        var b = document.createElement("b");
-        b.textContent = m.who;
-        var r = document.createElement("span");
-        r.className = "r";
-        r.textContent = w.ranks[m.rank];
-        p.appendChild(b);
-        p.appendChild(r);
-        p.appendChild(document.createTextNode(m.text));
-        body.appendChild(p);
-      });
-    } else {
-      var e = document.createElement("p");
-      e.className = "chat-empty";
-      e.textContent = w.foroSoon;
-      body.appendChild(e);
-    }
     var old = document.querySelector("#foro .chat-input");
     if (old) old.remove();
+
+    if (!isDemo()) {
+      var s = document.createElement("script");
+      s.src = "https://giscus.app/client.js";
+      s.setAttribute("data-repo", GISCUS.repo);
+      s.setAttribute("data-repo-id", GISCUS.repoId);
+      s.setAttribute("data-category", GISCUS.category);
+      s.setAttribute("data-category-id", GISCUS.categoryId);
+      s.setAttribute("data-mapping", "specific");
+      s.setAttribute("data-term", GISCUS.term);
+      s.setAttribute("data-strict", "1");
+      s.setAttribute("data-reactions-enabled", "0");
+      s.setAttribute("data-emit-metadata", "0");
+      s.setAttribute("data-input-position", "bottom");
+      s.setAttribute("data-theme", giscusTheme());
+      s.setAttribute("data-lang", lang);
+      s.setAttribute("data-loading", "lazy");
+      s.crossOrigin = "anonymous";
+      s.async = true;
+      body.appendChild(s);
+      return;
+    }
+
+    DEMO_FORO.forEach(function (m) {
+      var p = document.createElement("p");
+      p.className = "msg";
+      var b = document.createElement("b");
+      b.textContent = m.who;
+      var r = document.createElement("span");
+      r.className = "r";
+      r.textContent = w.ranks[m.rank];
+      p.appendChild(b);
+      p.appendChild(r);
+      p.appendChild(document.createTextNode(m.text));
+      body.appendChild(p);
+    });
     var input = document.createElement("div");
     input.className = "chat-input";
     input.textContent = w.foroInput;

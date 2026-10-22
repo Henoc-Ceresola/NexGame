@@ -18,7 +18,7 @@
     "ruta.h": "Route",
     "ruta.1h": "Open the project", "ruta.1p": "Presentation, ideas and issues on GitHub.",
     "ruta.2h": "First missions", "ruta.2p": "Ideas, debates, design and translations. No code.",
-    "ruta.3h": "Public Interlocutor", "ruta.3p": "A first version of the code, open to everyone.",
+    "ruta.3h": "Public Interlocutor", "ruta.3p": "NexUs, the first version of the code, is now public.",
     "ruta.4h": "Code missions", "ruta.4p": "Build and test new pieces.",
     "lab.h": "Active mining contracts",
     "lab.hint": "Each mission is an Issue on GitHub. Open it, leave a comment and get started.",
